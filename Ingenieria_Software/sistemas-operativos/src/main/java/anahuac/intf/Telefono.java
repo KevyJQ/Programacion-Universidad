@@ -11,4 +11,6 @@ public interface Telefono {
 	public void telefonoCelular(TipoTelefono telefono);
 
 	public void imprirmirDatos(TipoTelefono telefono);
+
+
 }
