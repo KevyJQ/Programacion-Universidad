@@ -1,4 +1,4 @@
-package intf;
+package services;
 
 public interface MostrarMenu {
 

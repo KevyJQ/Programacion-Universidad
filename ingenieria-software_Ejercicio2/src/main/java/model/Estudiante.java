@@ -5,23 +5,21 @@ import java.util.List;
 
 public class Estudiante extends Persona {
 
-	private int cursoInscrito;
-	private List<Materias> materias = new ArrayList<Materias>();
+	private List<Materia> materias;
 
-	public int getCursoInscrito() {
-		return cursoInscrito;
+	public Estudiante() {
+		this.materias = new ArrayList<>();
 	}
 
-	public int setCursoInscrito(int cursoInscrito) {
-		return this.cursoInscrito = cursoInscrito;
-	}
-
-	public List<Materias> getMaterias() {
+	public List<Materia> getMaterias() {
 		return materias;
 	}
 
-	public void setMaterias(List<Materias> materias) {
-		this.materias = materias;
+	public void agregarMateria(Materia materia) {
+		materias.add(materia);
 	}
 
+	public void removerMateria(Materia materia) {
+		materias.remove(materia);
+	}
 }

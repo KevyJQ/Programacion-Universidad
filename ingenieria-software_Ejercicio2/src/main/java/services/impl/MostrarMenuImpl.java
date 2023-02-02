@@ -1,11 +1,11 @@
-package impl;
+package services.impl;
 
-import intf.MostrarMenu;
-import intf.InfoService;
-import intf.ScanService;
 import model.Estudiante;
 import model.PersonalServicio;
 import model.Profesor;
+import services.InfoService;
+import services.MostrarMenu;
+import services.ScanService;
 
 public class MostrarMenuImpl implements MostrarMenu {
 
@@ -42,7 +42,7 @@ public class MostrarMenuImpl implements MostrarMenu {
 				System.out.println("Menu estudiante");
 				datos.pedirDatos(estudiante);
 				// TODO: Checar el error de las materias
-				// datos.pedirCursos(estudiante);
+				datos.agregarMaterias(estudiante);
 				break;
 
 			case PROFESOR:
@@ -60,7 +60,6 @@ public class MostrarMenuImpl implements MostrarMenu {
 				break;
 
 			case MOSTRAR_DATOS:
-
 				System.out.println("Mostrar datos");
 				mostrarSubMenu();
 				break;

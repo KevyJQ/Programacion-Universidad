@@ -1,22 +1,22 @@
-package services;
+package services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import intf.InfoService;
 import model.Estudiante;
-import model.Materias;
+import model.Materia;
 import model.Persona;
 import model.PersonalServicio;
 import model.Profesor;
+import services.InfoService;
 
 public class InfoServiceImpl implements InfoService {
 	Scanner sc = new Scanner(System.in);
+	List<Materia> materias;
 
 	@Override
 	public void pedirDatos(Persona persona) {
-
 		System.out.print("Nombre: ");
 		persona.setName(sc.nextLine());
 		System.out.println("Apellido Paterno: ");
@@ -37,7 +37,6 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("Apellido Materno: " + persona.getApellidoMaterno());
 		System.out.println("ID: " + persona.getId());
 		System.out.println("Estado civil: " + persona.getEstadoCivil());
-
 	}
 
 	@Override
@@ -49,17 +48,31 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public void pedirCursos(Estudiante estudiante) {
-		List<Materias> materias = new ArrayList<Materias>();
-
-		System.out.println("Cuantos cursos estan tomando: ");
-		int loop = estudiante.setCursoInscrito(sc.nextInt());
-
-		for (int i = 1; i <= loop; i++) {
-			System.out.println("Materia " + i);
-			materias.get(i).setNombre(sc.nextLine());
+	public void agregarMaterias(Estudiante estudiante) {
+		for (int i = 0; i < materias.size(); i++) {
+			Materia materia = materias.get(i);
+			System.out.println((i + 1) + " materia: " + materia.getNombre());
 		}
-		estudiante.setMaterias(materias);
+		// TODO: Implementar la seleccion de materias
+		int selectIndex = 1;
+		Materia materia = materias.get(selectIndex);
+		estudiante.agregarMateria(materia);
+
+		System.out.println("Materias del estudiante");
+		for (int j = 0; j < estudiante.getMaterias().size(); j++) {
+			Materia materia2 = estudiante.getMaterias().get(j);
+			System.out.println("Sus materias" + materia2.getNombre());
+		}
+//		List<String> materias = new ArrayList<>();
+//
+//		System.out.println("Cuantos cursos estan tomando: ");
+//		int loop = estudiante.setCursoInscrito(sc.nextInt());
+//
+//		for (int i = 1; i <= loop; i++) {
+//			System.out.println("Materia " + i);
+//			materias.add(sc.nextLine());
+//		}
+//		estudiante.setMaterias(materias);
 	}
 
 	@Override
@@ -88,6 +101,20 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("En que seccion esta asignado. Ejemplo:\nBiblioteca\nSalones\nOficinas\netc..");
 		personalServicio.setSeccionAsignada(sc.nextLine());
 
+	}
+
+	@Override
+	public void inicializarMaterias() {
+		materias = new ArrayList<Materia>();
+
+		Materia mate = new Materia();
+		mate.setNombre("Matematicas");
+
+		Materia fisica = new Materia();
+		fisica.setNombre("FIsica");
+
+		materias.add(mate);
+		materias.add(fisica);
 	}
 
 }

@@ -1,10 +1,10 @@
-package impl;
+package services.impl;
 
 import java.io.FilterInputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import intf.ScanService;
+import services.ScanService;
 
 public class ScanServiceImp implements ScanService {
 

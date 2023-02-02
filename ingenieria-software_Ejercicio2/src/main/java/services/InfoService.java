@@ -1,4 +1,4 @@
-package intf;
+package services;
 
 import model.Estudiante;
 import model.Persona;
@@ -11,16 +11,18 @@ public interface InfoService {
 
 	void pedirDatosEmpleados(Persona persona);
 
-	void pedirCursos(Estudiante estudiante);
-
 	void cambioEstadoCivil(Persona persona);
 
 	void reAsignacionOficina(Persona persona);
+
+	void agregarMaterias(Estudiante estudiante);
 
 	void departamentoAsignado(Profesor profesor);
 
 	void seccionAsignada(PersonalServicio personalServicio);
 
 	void imprimirDatos(Persona persona);
+
+	void inicializarMaterias();
 
 }

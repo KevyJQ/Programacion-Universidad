@@ -1,14 +1,14 @@
 package main;
 
-import impl.MostrarMenuImpl;
-import impl.ScanServiceImp;
-import intf.InfoService;
-import intf.MostrarMenu;
-import intf.ScanService;
 import model.Estudiante;
 import model.PersonalServicio;
 import model.Profesor;
-import services.InfoServiceImpl;
+import services.InfoService;
+import services.MostrarMenu;
+import services.ScanService;
+import services.impl.InfoServiceImpl;
+import services.impl.MostrarMenuImpl;
+import services.impl.ScanServiceImp;
 
 public class Main {
 
@@ -22,6 +22,7 @@ public class Main {
 		PersonalServicio personalServicio = new PersonalServicio();
 
 		MostrarMenu menu = new MostrarMenuImpl(estudiante, profesor, personalServicio, scanService, infoService);
+		infoService.inicializarMaterias();
 		menu.mostrarMenu();
 	}
 
