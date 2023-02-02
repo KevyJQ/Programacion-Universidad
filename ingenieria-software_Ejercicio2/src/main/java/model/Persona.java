@@ -9,7 +9,6 @@ public class Persona {
 	private String ApellidoMaterno;
 	private String id;
 	private String EstadoCivil;
-	private String anoIngreso;
 	private String numOficina;
 
 	public String getName() {
@@ -50,14 +49,6 @@ public class Persona {
 
 	public void setEstadoCivil(String estadoCivil) {
 		EstadoCivil = estadoCivil;
-	}
-
-	public String getAnoIngreso() {
-		return anoIngreso;
-	}
-
-	public void setAnoIngreso(String anoIngreso) {
-		this.anoIngreso = anoIngreso;
 	}
 
 	public String getNumOficina() {

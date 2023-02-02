@@ -19,32 +19,67 @@ public class InfoServiceImpl implements InfoService {
 	public void pedirDatos(Persona persona) {
 		System.out.print("Nombre: ");
 		persona.setName(sc.nextLine());
-		System.out.println("Apellido Paterno: ");
+		System.out.print("Apellido Paterno: ");
 		persona.setApellidoPaterno(sc.nextLine());
-		System.out.println("Apellido Materno: ");
+		System.out.print("Apellido Materno: ");
 		persona.setApellidoMaterno(sc.nextLine());
-		System.out.println("ID: ");
+		System.out.print("ID: ");
 		persona.setId(sc.nextLine());
-		System.out.println("Estado civil: ");
+		System.out.print("Estado civil: ");
 		persona.setEstadoCivil(sc.nextLine());
-
+		System.out.print("Numero de Oficina.\nSi eres estudiante solo dale Enter: ");
+		persona.setNumOficina(sc.nextLine());
+		System.out.println();
 	}
 
 	@Override
-	public void imprimirDatos(Persona persona) {
+	public void imprimirDatosGeneral(Persona persona) {
 		System.out.println("Nombre: " + persona.getName());
 		System.out.println("Apellido Paterno: " + persona.getApellidoPaterno());
 		System.out.println("Apellido Materno: " + persona.getApellidoMaterno());
 		System.out.println("ID: " + persona.getId());
 		System.out.println("Estado civil: " + persona.getEstadoCivil());
+		System.out.println("Numero de oficina: " + persona.getNumOficina());
+	}
+
+	public void imprimirMaterias(Estudiante estudiante) {
+		System.out.println("Las materias que tengo incritas son :");
+		for (int j = 0; j < estudiante.getMaterias().size(); j++) {
+			Materia materia2 = estudiante.getMaterias().get(j);
+			System.out.println(materia2.getNombre());
+		}
+		System.out.println();
 	}
 
 	@Override
-	public void pedirDatosEmpleados(Persona persona) {
-		System.out.println("En que año ingresaste: ");
-		persona.setAnoIngreso(sc.nextLine());
+	public void imprimirDepartamento(Profesor profesor) {
+		System.out.println("Año de ingreso " + profesor.getaIngreso());
+		System.out.println("Departamento: " + profesor.getDepartamento());
+	}
+
+	@Override
+	public void imprimirSeccionAsignada(PersonalServicio personalServicio) {
+		System.out.println("Año de ingreso: " + personalServicio.getaIngreso());
+		System.out.println("Seccion Asignada: " + personalServicio.getSeccionAsignada());
+	}
+
+	@Override
+	public void pedirDatosProfesor(Profesor profesor) {
+		System.out.println("En que año ingreso: ");
+		profesor.setaIngreso(sc.nextLine());
 		System.out.println("Que numero de oficina tiene asignado: ");
-		persona.setNumOficina(sc.nextLine());
+		profesor.setNumOficina(sc.nextLine());
+		System.out.println(
+				"Es que departamento esta asignado. Ejemplos:\nIngenieria\nMatematicas\nAdministracion\netc..");
+		profesor.setDepartamento(sc.nextLine());
+	}
+
+	@Override
+	public void pedirDatosPersonalSerivicio(PersonalServicio personalServicio) {
+		System.out.println("En que año ingreso: ");
+		personalServicio.setaIngreso(sc.nextLine());
+		System.out.println("En que seccion esta asignado. Ejemplo:\nBiblioteca\nSalones\nOficinas\netc..");
+		personalServicio.setSeccionAsignada(sc.nextLine());
 	}
 
 	@Override
@@ -53,32 +88,24 @@ public class InfoServiceImpl implements InfoService {
 			Materia materia = materias.get(i);
 			System.out.println((i + 1) + " materia: " + materia.getNombre());
 		}
-		// TODO: Implementar la seleccion de materias
-		int selectIndex = 1;
-		Materia materia = materias.get(selectIndex);
+		System.out.print("\nQue materia deseas agregar: ");
+		int index = sc.nextInt();
+		Materia materia = materias.get(index - 1);
 		estudiante.agregarMateria(materia);
 
-		System.out.println("Materias del estudiante");
+		System.out.println("\nLista de materias");
 		for (int j = 0; j < estudiante.getMaterias().size(); j++) {
 			Materia materia2 = estudiante.getMaterias().get(j);
-			System.out.println("Sus materias" + materia2.getNombre());
+			System.out.println(materia2.getNombre());
 		}
-//		List<String> materias = new ArrayList<>();
-//
-//		System.out.println("Cuantos cursos estan tomando: ");
-//		int loop = estudiante.setCursoInscrito(sc.nextInt());
-//
-//		for (int i = 1; i <= loop; i++) {
-//			System.out.println("Materia " + i);
-//			materias.add(sc.nextLine());
-//		}
-//		estudiante.setMaterias(materias);
+		System.out.println();
 	}
 
 	@Override
 	public void cambioEstadoCivil(Persona persona) {
 		System.out.println("Tu actual estado civil es: " + persona.getEstadoCivil());
 		System.out.print("Cual es tu nuevo estado civil: ");
+		persona.setEstadoCivil(new String());
 		persona.setEstadoCivil(sc.nextLine());
 	}
 
@@ -86,21 +113,8 @@ public class InfoServiceImpl implements InfoService {
 	public void reAsignacionOficina(Persona persona) {
 		System.out.println("Tu actual numero de oficina es: " + persona.getNumOficina());
 		System.out.println("Cual es el nuevo numero de tu oficina: ");
+		persona.setEstadoCivil(new String());
 		persona.setNumOficina(sc.nextLine());
-	}
-
-	@Override
-	public void departamentoAsignado(Profesor profesor) {
-		System.out.println(
-				"Es que departamento esta asignado. Ejemplos:\nIngenieria\nMatematicas\nAdministracion\netc..");
-		profesor.setDepartamento(sc.nextLine());
-	}
-
-	@Override
-	public void seccionAsignada(PersonalServicio personalServicio) {
-		System.out.println("En que seccion esta asignado. Ejemplo:\nBiblioteca\nSalones\nOficinas\netc..");
-		personalServicio.setSeccionAsignada(sc.nextLine());
-
 	}
 
 	@Override
@@ -113,8 +127,24 @@ public class InfoServiceImpl implements InfoService {
 		Materia fisica = new Materia();
 		fisica.setNombre("FIsica");
 
+		Materia quimica = new Materia();
+		quimica.setNombre("Quimica");
+
+		Materia etica = new Materia();
+		etica.setNombre("Etica");
+
+		Materia calculo = new Materia();
+		calculo.setNombre("Calculo");
+
+		Materia ia = new Materia();
+		ia.setNombre("Inteligencia Artificial");
+
 		materias.add(mate);
 		materias.add(fisica);
-	}
+		materias.add(quimica);
+		materias.add(etica);
+		materias.add(calculo);
+		materias.add(ia);
 
+	}
 }

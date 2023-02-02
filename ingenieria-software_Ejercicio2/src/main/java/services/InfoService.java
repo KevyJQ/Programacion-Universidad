@@ -9,20 +9,24 @@ public interface InfoService {
 
 	void pedirDatos(Persona persona);
 
-	void pedirDatosEmpleados(Persona persona);
-
 	void cambioEstadoCivil(Persona persona);
 
 	void reAsignacionOficina(Persona persona);
 
 	void agregarMaterias(Estudiante estudiante);
 
-	void departamentoAsignado(Profesor profesor);
+	void imprimirDatosGeneral(Persona persona);
 
-	void seccionAsignada(PersonalServicio personalServicio);
+	void imprimirMaterias(Estudiante estudiante);
 
-	void imprimirDatos(Persona persona);
+	void imprimirDepartamento(Profesor profesor);
+
+	void imprimirSeccionAsignada(PersonalServicio personalServicio);
 
 	void inicializarMaterias();
+
+	void pedirDatosProfesor(Profesor profesor);
+
+	void pedirDatosPersonalSerivicio(PersonalServicio personalServicio);
 
 }

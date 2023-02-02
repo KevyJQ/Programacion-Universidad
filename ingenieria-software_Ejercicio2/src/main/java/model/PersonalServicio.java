@@ -2,6 +2,7 @@ package model;
 
 public class PersonalServicio extends Persona {
 
+	private String aIngreso;
 	private String seccionAsignada;
 
 	public String getSeccionAsignada() {
@@ -12,4 +13,11 @@ public class PersonalServicio extends Persona {
 		this.seccionAsignada = seccionAsignada;
 	}
 
+	public String getaIngreso() {
+		return aIngreso;
+	}
+
+	public void setaIngreso(String aIngreso) {
+		this.aIngreso = aIngreso;
+	}
 }
