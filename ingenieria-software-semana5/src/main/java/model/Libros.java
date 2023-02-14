@@ -1,21 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import service.Prestable;
 
 public class Libros extends Publicacion implements Prestable {
-	private List<Libros> libros = new ArrayList<Libros>();
+
 	private String estatus;
-
-	public List<Libros> getLibros() {
-		return libros;
-	}
-
-	public void setLibros(List<Libros> libros) {
-		this.libros = libros;
-	}
 
 	public String getEstatus() {
 		return estatus;
@@ -28,7 +17,7 @@ public class Libros extends Publicacion implements Prestable {
 	@Override
 	public void prestar() {
 		System.out.println("Metodo prestar en clase libro");
-		setEstatus("Prestado");
+		setEstatus("No Disponible...Prestado");
 	}
 
 	@Override
@@ -41,7 +30,7 @@ public class Libros extends Publicacion implements Prestable {
 	@Override
 	public void prestado(Libros libros) {
 		System.out.println("Metodo prestado en clase libro");
-		estatus = "Este libro esta prestado";
+		setEstatus("Este libro se encuentra prestado actualmente");
 	}
 
 }

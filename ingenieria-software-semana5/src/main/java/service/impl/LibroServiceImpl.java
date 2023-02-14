@@ -10,6 +10,7 @@ import service.ScanService;
 
 public class LibroServiceImpl implements LibroService {
 
+	Scanner scanner = new Scanner(System.in);
 	Libros libros;
 	ScanService scanService;
 	List<Libros> libro;
@@ -25,22 +26,46 @@ public class LibroServiceImpl implements LibroService {
 
 	@Override
 	public void menuLibro() {
-		// System.out.println("Menu Libro...");
 		while (true) {
 			MenuType opcion = opciones();
 			switch (opcion) {
 			case AGREGAR_LIBRO:
+				libro = new ArrayList<Libros>();
 				while (true) {
-					pedirDatos(new Libros());
+					pedirDatos();
+					System.out.println("Size: " + libro.size());
 					int opc = scanService.pedirNumeroEntreRango("Desea agregar otro libro\n1.Si\n2.No : ",
 							"Opcion no valilda", 1, 2);
 					if (opc == 2) {
 						break;
 					}
 				}
+				break;
 			case PRESTAR_LIBRO:
+				if (libro == null) {
+					System.out.println("No tenemos libros aun ingresados..");
+					break;
+				} else {
+					prestarLibro();
+					System.out.println("================================");
+					// TODO: Checar validacion en dado caso que no este disponible
+					int select = scanService.pedirNumeroEntreRango("Que libro deseas: ", "Opcion no valida..", 1,
+							libro.size());
+					libro.get(select - 1).prestar();
+				}
 				break;
 			case DEVOLVER_LIBRO:
+				if (libro == null) {
+					System.out.println("No tenemos libros aun ingresados..");
+					break;
+				} else {
+					prestarLibro();
+					System.out.println("================================");
+					// TODO: Checar validacion en dado caso que 
+					int select = scanService.pedirNumeroEntreRango("Que libro devolveras: ", "Opcion no valida..", 1,
+							libro.size());
+					libro.get(select - 1).devolver();
+				}
 				break;
 			case MOSTRAR_LIBROS:
 				mostrarLibros();
@@ -67,10 +92,8 @@ public class LibroServiceImpl implements LibroService {
 	}
 
 	@Override
-	public void pedirDatos(Libros libros) {
-		Scanner scanner = new Scanner(System.in);
-		libro = new ArrayList<Libros>();
-
+	public void pedirDatos() {
+		libros = new Libros();
 		System.out.print("Dame el codigo del libro: ");
 		libros.setCodigo(scanner.nextLine());
 		System.out.print("Cual es el titulo del libro: ");
@@ -91,7 +114,13 @@ public class LibroServiceImpl implements LibroService {
 			System.out.println("Anio de Publicacion: " + AllBooks.getaPublicacion());
 			System.out.println("Estatus: " + AllBooks.getEstatus());
 		}
+	}
 
+	private void prestarLibro() {
+		for (int i = 0; i < libro.size(); i++) {
+			System.out.println("================================");
+			System.out.println("Libro: " + (i + 1) + " Titulo del libro: " + libro.get(i).getTitulo());
+		}
 	}
 
 }
