@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.util.Scanner;
+
 import model.Libros;
 import model.Revistas;
 import service.LibroService;
@@ -17,7 +19,7 @@ public class MostrarMenuImp implements MostrarMenu {
 		LIBRO, REVISTA, SALIR
 	};
 
-	public MostrarMenuImp(Libros libros, Revistas revistas, ScanService service, LibroService libroService,
+	public MostrarMenuImp(Libros libros, ScanService service, LibroService libroService,
 			RevistaService revistaService) { // Constructor
 		this.scanService = service;
 		this.libroService = libroService;
@@ -42,6 +44,13 @@ public class MostrarMenuImp implements MostrarMenu {
 			}
 		}
 	}
+	
+	public static int pedirValor() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Cual es el numero de la revista: ");
+		int valor = sc.nextInt();
+		return valor;
+	}
 
 	private MenuType mostrarOpciones() {
 		int opcion;
@@ -51,7 +60,7 @@ public class MostrarMenuImp implements MostrarMenu {
 		System.out.println("================================");
 
 		System.out.println("1. Menu Libro");
-		System.out.println("2. Menu Rvistas");
+		System.out.println("2. Menu Revista");
 		System.out.println("3. Salir");
 
 		opcion = scanService.pedirNumeroEntreRango("Opcion: ", "Esa opcion no existe..", 1, 3);

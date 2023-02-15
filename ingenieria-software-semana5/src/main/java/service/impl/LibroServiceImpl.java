@@ -33,7 +33,7 @@ public class LibroServiceImpl implements LibroService {
 				libro = new ArrayList<Libros>();
 				while (true) {
 					pedirDatos();
-					System.out.println("Size: " + libro.size());
+					// System.out.println("Size: " + libro.size());
 					int opc = scanService.pedirNumeroEntreRango("Desea agregar otro libro\n1.Si\n2.No : ",
 							"Opcion no valilda", 1, 2);
 					if (opc == 2) {
@@ -61,14 +61,19 @@ public class LibroServiceImpl implements LibroService {
 				} else {
 					prestarLibro();
 					System.out.println("================================");
-					// TODO: Checar validacion en dado caso que 
+					// TODO: Checar validacion en dado caso que solo aparesca los libros que no
+					// esten disponibles
 					int select = scanService.pedirNumeroEntreRango("Que libro devolveras: ", "Opcion no valida..", 1,
 							libro.size());
 					libro.get(select - 1).devolver();
 				}
 				break;
 			case MOSTRAR_LIBROS:
-				mostrarLibros();
+				if (libro == null) {
+					System.out.println("No tenemos libros aun ingresados..");
+				} else {
+					mostrarLibros();
+				}
 				break;
 			case ATRAS:
 				return;
@@ -86,7 +91,7 @@ public class LibroServiceImpl implements LibroService {
 		System.out.println("4. Imprimir todos los libros");
 		System.out.println("5. Salir");
 
-		opcion = scanService.pedirNumeroEntreRango("Opcion: ", "Opcion no valida...", 1, 4);
+		opcion = scanService.pedirNumeroEntreRango("Opcion: ", "Opcion no valida...", 1, 5);
 		MenuType[] menu = MenuType.values();
 		return menu[opcion - 1];
 	}
