@@ -16,8 +16,6 @@ public class Main {
 		login.setUsuario(sc.nextLine());
 		System.out.print("Dame tu password:");
 		login.setContra(sc.nextLine());
-
-		System.out.println(login.getName());
 		
 		login.login();
 	}

@@ -54,7 +54,7 @@ public class Logger {
 	}
 
 	public void login() {
-		if (getContra() == getPassword() && getUsuario() == getName()) {
+		if (usuario!= null && usuario.equals(name)) {
 			System.out.println("El Usuario " + getName() + " a entrado en la fecha " + new Date());
 		} else {
 			System.out.println("Falla de autentificacion...");
