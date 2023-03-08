@@ -3,7 +3,6 @@ package service.impl;
 import java.util.Scanner;
 
 import model.Libros;
-import model.Revistas;
 import service.LibroService;
 import service.MostrarMenu;
 import service.RevistaService;
@@ -44,7 +43,7 @@ public class MostrarMenuImp implements MostrarMenu {
 			}
 		}
 	}
-	
+
 	public static int pedirValor() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Cual es el numero de la revista: ");

@@ -65,7 +65,7 @@ public class RevistaServiceImpl implements RevistaService {
 
 		System.out.println("================================");
 		System.out.println("1. Agregar Revista");
-		System.out.println("2. Imprimir todos los libros");
+		System.out.println("2. Imprimir todas las revistas");
 		System.out.println("3. Salir");
 
 		opcion = scanService.pedirNumeroEntreRango("Opcion: ", "Opcion no valida...", 1, 3);
