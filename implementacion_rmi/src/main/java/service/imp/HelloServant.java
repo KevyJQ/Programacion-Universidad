@@ -1,5 +1,6 @@
 package service.imp;
 
+import java.io.FilterInputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -12,12 +13,16 @@ import service.HelloService;
 public class HelloServant extends UnicastRemoteObject implements HelloService {
 
 	List<Clientes> clientes = new ArrayList<Clientes>();
-	Scanner sc = new Scanner(System.in);
+
+	Scanner sc = new Scanner(new FilterInputStream(System.in) {
+		public void close() {
+		}
+	});
+
 	int numCuenta = 1;
 
 	// Es importante que declaremos el constructor con sus devidas throws
 	public HelloServant() throws RemoteException {
-		super();
 	}
 
 	// Implmentacion de los metodos
@@ -27,7 +32,6 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 
 	@SuppressWarnings("unlikely-arg-type")
 	public void opcion(int opc) throws RemoteException {
-		// System.out.println("Opcion: " + opc);
 		switch (opc) {
 		case 1:
 			System.out.println("Apertura de cuenta");
@@ -51,14 +55,15 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 			System.out.print("Cual es tu numero de Cuenta: ");
 			String cuenta = sc.nextLine();
 
-			//System.out.println(clientes.get(cuenta).getName());
-			
-			if (clientes.contains(clientes.get(Integer.parseInt(cuenta)-1)) == true) {
+			System.out.println("Cuenta '" + cuenta + "'");
+			System.out.println("Size: " + clientes.size());
+
+			if (existeCuenta(cuenta)) {
 				System.out.print("Cuanto deseas depositar $$: ");
-				int dinero = sc.nextInt();
+				int dinero = Integer.parseInt(sc.nextLine());
 				operacinoDeposito(cuenta, dinero);
-				System.out.println("Saldo inicial: " + clientes.get(Integer.parseInt(cuenta)-1).getSaldoInicial());
-				System.out.println("Saldo final: " + clientes.get(Integer.parseInt(cuenta)-1).getSaldoFinal());
+				System.out.println("Saldo inicial: " + clientes.get(Integer.parseInt(cuenta) - 1).getSaldoInicial());
+				System.out.println("Saldo final: " + clientes.get(Integer.parseInt(cuenta) - 1).getSaldoFinal());
 			} else {
 				System.out.println("Este numero de cuenta no existe");
 				break;
@@ -73,17 +78,17 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 			}
 			System.out.println("Cual es tu numero de cuenta: ");
 			String cuentaa = sc.nextLine();
-			
-			if (clientes.contains(clientes.get(Integer.parseInt(cuentaa)-1)) == true) {
+
+			if (existeCuenta(cuentaa)) {
 				System.out.println("Cuanto deseas retirar $$: ");
-				int retiro = sc.nextInt();
-				if (retiro > Integer.parseInt(clientes.get(Integer.parseInt(cuentaa)-1).getSaldoFinal())) {
+				int retiro = Integer.parseInt(sc.nextLine());
+				if (retiro > Integer.parseInt(clientes.get(Integer.parseInt(cuentaa) - 1).getSaldoFinal())) {
 					System.out.println("Lo sentimos el saldo que ingreso no es posible retirar");
 					break;
 				}
 				operacionRetiro(cuentaa, retiro);
-				System.out.println("Saldo inicial: " + clientes.get(Integer.parseInt(cuentaa)-1).getSaldoInicial());
-				System.out.println("Saldo final: " + clientes.get(Integer.parseInt(cuentaa)-1).getSaldoFinal());
+				System.out.println("Saldo inicial: " + clientes.get(Integer.parseInt(cuentaa) - 1).getSaldoInicial());
+				System.out.println("Saldo final: " + clientes.get(Integer.parseInt(cuentaa) - 1).getSaldoFinal());
 			} else {
 				System.out.println("Este numero de cuenta no existe");
 				break;
@@ -131,17 +136,30 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 	}
 
 	public void operacinoDeposito(String cuenta, int dinero) {
-		int valIni = Integer.parseInt(clientes.get(Integer.parseInt(cuenta)-1).getSaldoInicial()); // Extraemos el valor inicial
-		clientes.get(Integer.parseInt(cuenta)-1).setSaldoFinal(Integer.toString(valIni)); // Asignamos el mismo valor a valor final
+		Clientes cliente = clientes.get(Integer.parseInt(cuenta) - 1);
+
+		int valIni = Integer.parseInt(cliente.getSaldoFinal()); // Extraemos el
+																// valor inicial
+		cliente.setSaldoInicial(Integer.toString(valIni)); // Asignamos el mismo valor
+															// a valor final
 		int suma = valIni + dinero;// Hacemos la suma
-		clientes.get(Integer.parseInt(cuenta)-1).setSaldoFinal(Integer.toString(suma));// Asignamos el nuevo valor
+		cliente.setSaldoFinal(Integer.toString(suma));// Asignamos el nuevo valor
 	}
 
 	public void operacionRetiro(String cuentaa, int retiro) {
-		int valIni = Integer.parseInt(clientes.get(Integer.parseInt(cuentaa)-1).getSaldoFinal()); // Extraemos el valor inicial
-		clientes.get(Integer.parseInt(cuentaa)-1).setSaldoInicial(Integer.toString(valIni));
+		Clientes cliente = clientes.get(Integer.parseInt(cuentaa)-1);
+		int valIni = Integer.parseInt(cliente.getSaldoFinal()); // Extraemos el
+																									// valor inicial
+		cliente.setSaldoInicial(Integer.toString(valIni));
 		int resta = valIni - retiro;
-		clientes.get(Integer.parseInt(cuentaa)-1).setSaldoFinal(Integer.toString(resta));
+		cliente.setSaldoFinal(Integer.toString(resta));
 	}
 
+	public boolean existeCuenta(String cuenta) {
+		int cuentaa = Integer.parseInt(cuenta)-1;
+		if (cuentaa >= 0 && cuentaa < clientes.size()) {
+			return true;
+		}
+		return false;
+	}
 }

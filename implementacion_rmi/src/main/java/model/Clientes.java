@@ -8,7 +8,8 @@ public class Clientes {
 	private String saldoFinal;
 
 	public Clientes() {
-		super();
+		this.saldoInicial = "0";
+		this.saldoFinal = "0";
 	}
 
 	public String getName() {
