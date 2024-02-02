@@ -55,8 +55,8 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 			System.out.print("Cual es tu numero de Cuenta: ");
 			String cuenta = sc.nextLine();
 
-			System.out.println("Cuenta '" + cuenta + "'");
-			System.out.println("Size: " + clientes.size());
+//			System.out.println("Cuenta '" + cuenta + "'");
+//			System.out.println("Size: " + clientes.size());
 
 			if (existeCuenta(cuenta)) {
 				System.out.print("Cuanto deseas depositar $$: ");
@@ -147,16 +147,16 @@ public class HelloServant extends UnicastRemoteObject implements HelloService {
 	}
 
 	public void operacionRetiro(String cuentaa, int retiro) {
-		Clientes cliente = clientes.get(Integer.parseInt(cuentaa)-1);
+		Clientes cliente = clientes.get(Integer.parseInt(cuentaa) - 1);
 		int valIni = Integer.parseInt(cliente.getSaldoFinal()); // Extraemos el
-																									// valor inicial
+																// valor inicial
 		cliente.setSaldoInicial(Integer.toString(valIni));
 		int resta = valIni - retiro;
 		cliente.setSaldoFinal(Integer.toString(resta));
 	}
 
 	public boolean existeCuenta(String cuenta) {
-		int cuentaa = Integer.parseInt(cuenta)-1;
+		int cuentaa = Integer.parseInt(cuenta) - 1;
 		if (cuentaa >= 0 && cuentaa < clientes.size()) {
 			return true;
 		}
