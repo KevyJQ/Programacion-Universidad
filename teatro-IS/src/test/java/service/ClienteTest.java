@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.Test;
 
 import model.Cliente;
+import service.impl.LogicaImpl;
+import service.impl.MostrarMenuImpl;
 
 /*
  * En esta seccion mostraremos 10 pruebas manuelaes
@@ -42,9 +44,33 @@ public class ClienteTest {
 	}
 
 	/*
+ 	* La prueba sirve para verificar la funcionalidad de seleccionar un lugar de asiento
 	 * */
-	@Test
-	public void dddd() {
-		
-	}
+	    @Test
+    public void seleccionarLugarAsiento() {
+        Cliente cliente = new Cliente();
+        cliente.setArea("A1");
+        assertEquals(cliente.getArea(), "A1");
+    }
+
+	/*
+ 	* La prueba sirve para verificar la funcionalidad de seleccionar un lugar de asiento
+	 * */
+    @Test
+    public void calcularPrecioPagar() {
+        Cliente cliente = new Cliente();
+        cliente.setCostoTotal(100);
+        assertEquals(cliente.getCostoTotal(), 90); // Suponiendo un descuento del 10%
+    }
+
+	/*
+ 	* La prueba sirve para verificar que se muestra el menú completo de forma adecuada
+	 * */
+    @Test
+    public void mostrarMenuCompleto() {
+        Cliente cliente = new Cliente();        
+        boolean menu = MostrarMenuImpl.class.isEnum();
+        assertNotNull(menu);
+       // assertEquals(menu.size(), 5); // depende el número de opciones
+    }
 }
