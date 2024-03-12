@@ -1,0 +1,128 @@
+/* Estilos generales */
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #211951;
+
+}
+
+h1 {
+  font-weight: normal;
+  margin: 0;
+  color: #ddd;
+  text-align: center;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+/* Estilos para las secciones */
+
+.seccion_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #836FFF;
+}
+
+.seccion_2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #15F5BA;
+}
+
+.seccion_3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #F0F3FF;
+}
+
+.seccion img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.seccion h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.seccion_1,.seccion_2,.seccion_3 p {
+  font-size: 16px;
+  text-align: justify;
+}
+
+.imagen {
+  display: flex;
+  text-align: left;
+}
+
+.arriba {
+  background-color: bisque;
+  opacity: .8;
+  margin-top: 5px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  height: 40px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.arriba a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+}
+
+/* Media queries para adaptar la página a diferentes dispositivos */
+
+@media (max-width: 768px) {
+  .seccion {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 480px) {
+  .seccion img {
+    width: 100px;
+  }
+
+  .seccion h2 {
+    font-size: 16px;
+  }
+
+  .seccion p {
+    font-size: 14px;
+  }
+
+}

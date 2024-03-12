@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafeteria Matilda</title>
+    <link rel="icon" href="imagenes/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="script/cafeteria.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="title">
+            <div><img class="logo" src="imagenes/taza.png" alt=""></div>
+            <div class="bienvenida">
+                <h1 id="name">Bienvenidos Cafe Matilda</h1>
+            </div>
+            <div><img class="logo" src="imagenes/taza.png" alt=""></div>
+        </div>
+        <div class="marco">
+            <div class="photos">
+                <ul>
+                    <li><img src="imagenes/cafe1.jpg"></li>
+                    <li><img src="imagenes/cafe2.jpg"></li>
+                    <li><img src="imagenes/cafe3.jpg"></li>
+                    <li><img src="imagenes/cafe4.jpg"></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <a class="enlaces" href="#name">Inicio</a>
+        <a class="enlaces" href="#nosotros">Nosotros</a>
+        <a class="enlaces" href="/Integrantes.html">Integrantes</a>
+        <a class="enlaces" href="#ubicacion">Ubicacion</a>
+    </nav>
+    <main>
+        <div class="img_repet"></div>
+        <section class="nosotros">
+            <div id="nosotros">
+                <h1>Quienes somos</h1>
+            </div>
+            <div>
+                <p><b>Somos unos estudiantes de la Universidad Anahuac de la carrera de Ingenieria en Texnologias de la Informacion y Negocios Digitales, realizando lo que seria nuestra entrega para intersemestral de la materia de Programacion para dispositivos moviles que consta de hacer una pagina web implementando todos los conceptos que hemos visto en clase.</b></p>
+            </div>
+            <div class="arriba">
+                <a href="/Integrantes.html"><b>Integrantes</b></a>
+                <br>
+            </div>
+        </section>
+        <section class="opinion">
+            <div>
+                <h1>Reseñas</h1>
+            </div>
+            <div>
+                <form>
+                    <input class="texto" type="text" name="opinion" id="opinion" placeholder="Cuentanos tu experiencia" />
+                    <br /><br />
+                    <input class="boton" type="submit" value="Enviar" onclick="sub()" />
+                    <br /><br />
+                </form>
+            </div>
+
+        </section>
+        <section class="ubicacion">
+            <div id="ubicacion">
+                <h1>Ubicacion</h1>
+            </div>
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.735504741203!2d-100.31558628836218!3d20.680336999573075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35c2e9107bb03%3A0x365420365d90d821!2sUniversidad%20An%C3%A1huac%20Quer%C3%A9taro!5e0!3m2!1ses-419!2smx!4v1709837343631!5m2!1ses-419!2smx"
+                    width="700" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="arriba">
+            <a href="#name"><b>Inicio</b></a>
+        </div>
+    </footer>
+</body>
+
+</html>
